@@ -1,0 +1,17 @@
+{
+  "name": "task-9-types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "script": "node ./src/function.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0",
+    "typescript": "^2.8.1"
+  }
+}
