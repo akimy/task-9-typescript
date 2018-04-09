@@ -8,7 +8,7 @@ interface SomeObject {
 }
 
 interface extendInterface {
-  (first: boolean | object, ...sources: SomeObject[]) : object ;
+  <T>(first: boolean | SomeObject, ...sources: T[]) : SomeObject ;
 }
 
 interface isPlainObjectInterface {
@@ -41,6 +41,7 @@ const isPlainObject: isPlainObjectInterface = (obj) => {
  *      `null` или `undefined` игнорируются.
  * @returns {Object}
  */
+
 const extend: extendInterface = function extend(first, ...sources) {
   let target: SomeObject;
   let deep: boolean;
@@ -65,13 +66,13 @@ const extend: extendInterface = function extend(first, ...sources) {
 
     for (const key in obj) {
       if (hasOwnProperty.call(obj, key)) {
-        const val: object[] | object = obj[key];
+        const val = obj[key];
         const isArray = val && Array.isArray(val);
 
                 // Копируем "плоские" объекты и массивы рекурсивно.
         if (deep && val && (isPlainObject(val) || isArray)) {
-          const src: object | object[] = target[key];
-          let clone: object | object[];
+          const src = target[key];
+          let clone;
           if (isArray) {
             clone = src && Array.isArray(src) ? src : [];
           } else {
